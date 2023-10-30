@@ -2,9 +2,11 @@ public class AplikasiToDoList {
 
     public static String[] model = new String[10];
 
+    public static java.util.Scanner scanner = new java.util.Scanner(System.in);
+
     public static void main(String[] args) {
 
-        testShowToDoList();
+        testInput();
 
     }
 
@@ -64,18 +66,95 @@ public class AplikasiToDoList {
         }
     }
 
+    public static void testAddToDoList() {
+        for (int i = 0; i < 25; i++) {
+            addToDoList("Contoh ToDo Ke " + i);
+        }
+
+        showToDoList();
+    }
+
     /**
      * Menghapus ToDoList
      */
-    public static void removeToDoList(){
+    public static boolean removeToDoList(Integer number){
+        if ((number - 1) >= model.length) {
+            return false;
+        } else if (model[number - 1] == null) {
+            return false;
+        } else {
+            for (int i = (number - 1); i < model.length; i++) {
+                if (i == (model.length - 1)) {
+                    model[i] = null;
+                } else {
+                    model[i] = model[i + 1];
+                }
+            }
+            return true;
+        }
+    }
 
+    public static void testRemoveToDoList() {
+        addToDoList("Satu");
+        addToDoList("Dua");
+        addToDoList("Tiga");
+        addToDoList("Empat");
+        addToDoList("Lima");
+
+        var result = removeToDoList(20);
+        System.out.println(result);
+
+        result = removeToDoList(7);
+        System.out.println(result);
+
+        result = removeToDoList(2);
+        System.out.println(result);
+
+        showToDoList();
+    }
+
+    /**
+     * Menerima Input
+     */
+
+    public static String input(String info) {
+        System.out.print(info + " : ");
+        String data = scanner.nextLine();
+        return data;
+    }
+
+    public static void testInput() {
+        var name = input("Nama");
+        System.out.println("Hi " + name);
+
+        var channel = input("Channel");
+        System.out.println(channel);
     }
 
     /**
      * Menampilkan View ToDoList
      */
     public static void viewShowToDoList(){
+        while (true) {
+            showToDoList();
 
+            System.out.println("MENU : ");
+            System.out.println("1. Tambah");
+            System.out.println("2. Tambah");
+            System.out.println("x. Tambah");
+
+            var input = input("Pilih");
+
+            if (input.equals("1")) {
+                viewAddToDoList();
+            } else if (input.equals("2")) {
+                viewRemoveToDoList();
+            } else if (input.equals("x")) {
+                break;
+            } else {
+                System.out.println("Pilihan Tidak Dimengerti");
+            }
+        }
     }
 
     /**
