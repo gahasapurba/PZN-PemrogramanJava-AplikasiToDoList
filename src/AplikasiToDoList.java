@@ -6,7 +6,7 @@ public class AplikasiToDoList {
 
     public static void main(String[] args) {
 
-        testViewRemoveToDoList();
+        viewShowToDoList();
 
     }
 
@@ -142,8 +142,8 @@ public class AplikasiToDoList {
 
             System.out.println("MENU : ");
             System.out.println("1. Tambah");
-            System.out.println("2. Tambah");
-            System.out.println("x. Tambah");
+            System.out.println("2. Hapus");
+            System.out.println("x. Keluar");
 
             var input = input("Pilih");
 
